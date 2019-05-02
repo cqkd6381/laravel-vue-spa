@@ -8,11 +8,11 @@ import VueRouter from 'vue-router';
 
 import router from './routes';
 
-
+import App from './components/App';
 
 Vue.use(VueRouter);
 
-// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('app', App);
 
 
 new Vue({
