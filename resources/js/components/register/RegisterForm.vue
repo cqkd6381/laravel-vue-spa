@@ -7,7 +7,7 @@
             <div class="col-md-6">
                 <input v-model="name"
                        :class="{ 'is-invalid' : errors.has('name') }"
-                       v-validate="'required|min:4'"
+                       v-validate="'required|alpha_dash|min:4'"
                        data-vv-as="用户名 "
                        id="name" type="text" class="form-control" name="name" required autocomplete="name">
                 <span class="invalid-feedback" v-show="errors.has('name')">{{errors.first('name')}}</span>

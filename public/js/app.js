@@ -48893,8 +48893,8 @@ var render = function() {
               {
                 name: "validate",
                 rawName: "v-validate",
-                value: "required|min:4",
-                expression: "'required|min:4'"
+                value: "required|alpha_dash|min:4",
+                expression: "'required|alpha_dash|min:4'"
               }
             ],
             staticClass: "form-control",
