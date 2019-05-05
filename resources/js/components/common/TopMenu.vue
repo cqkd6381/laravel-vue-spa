@@ -8,12 +8,18 @@
 
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav mr-auto">
-                    <router-link class="nav-item" tag="li" to="/login">
+                    <router-link v-if="!user.authenticated" class="nav-item" tag="li" to="/login">
                         <a class="nav-link">登录</a>
                     </router-link>
-                    <router-link class="nav-item" tag="li" to="/register">
+                    <router-link v-if="!user.authenticated" class="nav-item" tag="li" to="/register">
                         <a class="nav-link">注册</a>
                     </router-link>
+                    <router-link v-if="user.authenticated" class="nav-item" tag="li" to="/profile">
+                        <a class="nav-link">个人中心</a>
+                    </router-link>
+                    <li v-if="user.authenticated" class="nav-item">
+                        <a @click.prevent="logout" href="#" class="nav-link">退出</a>
+                    </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -25,8 +31,21 @@
 </template>
 
 <script>
+    import {mapState} from 'vuex'
     export default {
-        name: "TopMenu"
+        name: "TopMenu",
+        computed: {
+            ...mapState({
+                user: state => state.AuthUser
+            })
+        },
+        methods:{
+            logout() {
+                this.$store.dispatch('logoutRequest').then(response => {
+                    this.$router.push({name: 'home'})
+                })
+            }
+        }
     }
 </script>
 

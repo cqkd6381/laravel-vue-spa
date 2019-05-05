@@ -42,11 +42,19 @@ class LoginController extends Controller
         $this->proxy = $proxy;
     }
 
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function login()
     {
 //        $this->validateLogin(request());
 
         return $this->proxy->login(request('email'),request('password'));
 
+    }
+
+    public function logout()
+    {
+        $this->proxy->logout();
     }
 }

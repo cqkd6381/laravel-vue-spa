@@ -23,3 +23,4 @@ Route::get('/posts/{post}','PostController@show');
 
 Route::post('/register','Auth\RegisterController@register');
 Route::post('/login','Auth\LoginController@login');
+Route::post('/logout','Auth\LoginController@logout');

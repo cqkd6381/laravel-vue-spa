@@ -86,15 +86,7 @@ class TokenProxy
     public function logout()
     {
         $user = auth()->guard('api')->user();
-        if(is_null($user)){
-            app('cookie')->queue(app('cookie')->forget('refreshToken'));
 
-            return response()->json([
-                'status' => 'success',
-                'status_code' => 200,
-                'message' => 'logout success'
-            ],200);
-        }
         $accessToken = $user->token();
 
         app('db')->table('oauth_refresh_tokens')
@@ -109,9 +101,9 @@ class TokenProxy
 
         return response()->json([
             'status' => 'success',
-            'status_code' => 200,
+            'status_code' => 204,
             'message' => 'logout success'
-        ],200);
+        ],204);
     }
 
 
