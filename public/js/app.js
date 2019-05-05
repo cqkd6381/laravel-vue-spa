@@ -1954,16 +1954,14 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     login: function login() {
       var formData = {
-        grant_type: 'password',
-        client_id: 2,
-        client_secret: 'V4XCfQHYstp2DkiJrU8ETtBhc8E0rIUyUFESrds7',
-        scope: '',
-        username: this.email,
+        email: this.email,
         password: this.password
       };
-      axios.post('/oauth/token', formData).then(function (response) {
-        _helpers_jwt__WEBPACK_IMPORTED_MODULE_0__["default"].setToken(response.data.access_token);
+      axios.post('api/login', formData).then(function (response) {
+        _helpers_jwt__WEBPACK_IMPORTED_MODULE_0__["default"].setToken(response.data.token);
         console.log(response.data);
+      })["catch"](function (error) {
+        console.log(error.response.data);
       });
     }
   }

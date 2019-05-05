@@ -22,3 +22,4 @@ Route::get('/posts','PostController@index');
 Route::get('/posts/{post}','PostController@show');
 
 Route::post('/register','Auth\RegisterController@register');
+Route::post('/login','Auth\LoginController@login');
