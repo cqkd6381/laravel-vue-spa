@@ -1937,7 +1937,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _helpers_jwt__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../helpers/jwt */ "./resources/js/helpers/jwt.js");
+/* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
+//
 //
 //
 //
@@ -1983,8 +1984,19 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       email: '',
-      password: ''
+      password: '',
+      bag: new vee_validate__WEBPACK_IMPORTED_MODULE_0__["ErrorBag"]()
     };
+  },
+  computed: {
+    mismatchError: function mismatchError() {
+      return this.bag.has('password') && !this.errors.has('password');
+    }
+  },
+  watch: {
+    password: function password(newValue, oldValue) {
+      this.bag.clear();
+    }
   },
   methods: {
     login: function login() {
@@ -2001,6 +2013,13 @@ __webpack_require__.r(__webpack_exports__);
             _this.$router.push({
               name: 'profile'
             });
+          })["catch"](function (error) {
+            if (error.response.status === 421) {
+              _this.bag.add({
+                field: 'password',
+                msg: '邮箱密码不相符'
+              });
+            }
           });
         } //
 
@@ -49034,7 +49053,10 @@ var render = function() {
               }
             ],
             staticClass: "form-control",
-            class: { "is-invalid": _vm.errors.has("password") },
+            class: {
+              "is-invalid":
+                _vm.errors.has("password") || _vm.bag.has("password")
+            },
             attrs: {
               "data-vv-as": "密码 ",
               id: "password",
@@ -49067,7 +49089,13 @@ var render = function() {
               staticClass: "invalid-feedback"
             },
             [_vm._v(_vm._s(_vm.errors.first("password")))]
-          )
+          ),
+          _vm._v(" "),
+          _vm.mismatchError
+            ? _c("span", { staticClass: "invalid-feedback" }, [
+                _vm._v(_vm._s(_vm.bag.first("password")))
+              ])
+            : _vm._e()
         ])
       ]),
       _vm._v(" "),
@@ -66844,8 +66872,6 @@ __webpack_require__.r(__webpack_exports__);
       return axios.post('api/login', formData).then(function (response) {
         _helpers_jwt__WEBPACK_IMPORTED_MODULE_0__["default"].setToken(response.data.token);
         dispatch('setAuthUser');
-      })["catch"](function (error) {
-        console.log(error.response.data);
       });
     },
     logoutRequest: function logoutRequest(_ref2) {

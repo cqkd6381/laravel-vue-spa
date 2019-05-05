@@ -19,11 +19,12 @@
 
             <div class="col-md-6">
                 <input v-model="password"
-                       :class="{ 'is-invalid' : errors.has('password') }"
+                       :class="{ 'is-invalid' : errors.has('password') || bag.has('password') }"
                        v-validate="{ rules: {required: true, min: 8} }"
                        data-vv-as="密码 "
                        id="password" type="password" class="form-control" name="password" required>
                 <span class="invalid-feedback" v-show="errors.has('password')">{{errors.first('password')}}</span>
+                <span class="invalid-feedback" v-if="mismatchError">{{bag.first('password')}}</span>
             </div>
         </div>
 
@@ -38,13 +39,24 @@
 </template>
 
 <script>
-    import jwtToken from './../../helpers/jwt'
+    import { ErrorBag } from 'vee-validate'
     export default {
         name: "LoginForm",
         data() {
             return {
                 email: '',
-                password: ''
+                password: '',
+                bag: new ErrorBag
+            }
+        },
+        computed:{
+            mismatchError() {
+                return this.bag.has('password') && !this.errors.has('password')
+            }
+        },
+        watch:{
+            password: function (newValue, oldValue) {
+                this.bag.clear()
             }
         },
         methods: {
@@ -57,7 +69,14 @@
                         }
                         this.$store.dispatch('loginRequest', formData).then(response => {
                             this.$router.push({name: 'profile'})
-                        })
+                        }).catch(error => {
+                            if(error.response.status === 421){
+                                this.bag.add({
+                                    field: 'password',
+                                    msg: '邮箱密码不相符'
+                                })
+                            }
+                        });
                     }
                     //
                 })
