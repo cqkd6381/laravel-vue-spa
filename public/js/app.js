@@ -66838,13 +66838,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           type: _mutation_type__WEBPACK_IMPORTED_MODULE_0__["SET_AUTH_USER"],
           user: response.data
         });
+      })["catch"](function (error) {
+        dispatch('refreshToken');
       });
     },
     unsetAuthUser: function unsetAuthUser(_ref2) {
-      var commit = _ref2.commit,
-          dispatch = _ref2.dispatch;
+      var commit = _ref2.commit;
       commit({
         type: _mutation_type__WEBPACK_IMPORTED_MODULE_0__["UNSET_AUTH_USER"]
+      });
+    },
+    refreshToken: function refreshToken(_ref3) {
+      var commit = _ref3.commit,
+          dispatch = _ref3.dispatch;
+      return axios.post('/api/token/refresh').then(function (response) {
+        dispatch('loginSuccess', response.data);
+      })["catch"](function (error) {
+        dispatch('logoutRequest');
       });
     }
   }
@@ -66870,12 +66880,16 @@ __webpack_require__.r(__webpack_exports__);
     loginRequest: function loginRequest(_ref, formData) {
       var dispatch = _ref.dispatch;
       return axios.post('api/login', formData).then(function (response) {
-        _helpers_jwt__WEBPACK_IMPORTED_MODULE_0__["default"].setToken(response.data.token);
-        dispatch('setAuthUser');
+        dispatch('loginSuccess', response.data);
       });
     },
-    logoutRequest: function logoutRequest(_ref2) {
+    loginSuccess: function loginSuccess(_ref2, tokenResponse) {
       var dispatch = _ref2.dispatch;
+      _helpers_jwt__WEBPACK_IMPORTED_MODULE_0__["default"].setToken(tokenResponse.token);
+      dispatch('setAuthUser');
+    },
+    logoutRequest: function logoutRequest(_ref3) {
+      var dispatch = _ref3.dispatch;
       return axios.post('/api/logout').then(function (response) {
         _helpers_jwt__WEBPACK_IMPORTED_MODULE_0__["default"].removeToken();
         dispatch('unsetAuthUser');

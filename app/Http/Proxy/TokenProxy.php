@@ -77,7 +77,8 @@ class TokenProxy
     {
         $refreshToken = request()->cookie('refreshToken');
         return $this->proxy('refresh_token',
-            ['refresh_token' => $refreshToken]);
+            ['refresh_token' => $refreshToken]
+        );
     }
 
     /**

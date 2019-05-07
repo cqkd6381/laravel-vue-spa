@@ -5,9 +5,12 @@ export default {
     actions: {
         loginRequest({dispatch}, formData) {
             return axios.post('api/login',formData).then(response => {
-                jwtToken.setToken(response.data.token)
-                dispatch('setAuthUser')
+                dispatch('loginSuccess',response.data)
             })
+        },
+        loginSuccess({dispatch}, tokenResponse) {
+            jwtToken.setToken(tokenResponse.token)
+            dispatch('setAuthUser')
         },
         logoutRequest({dispatch}) {
             return axios.post('/api/logout').then(response => {
