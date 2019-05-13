@@ -21,7 +21,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/posts','PostController@index');
 Route::get('/posts/{post}','PostController@show');
 
+// auth
 Route::post('/register','Auth\RegisterController@register');
 Route::post('/login','Auth\LoginController@login');
 Route::post('/logout','Auth\LoginController@logout');
 Route::post('/token/refresh','Auth\LoginController@refresh');
+
+// recDrive
+Route::resource('/drives','DriveController');
+Route::put('/drives/{id}/toggleStar','DriveController@toggleStar');
+
+Route::get('/tags','DriveController@getTags');
