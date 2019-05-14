@@ -14,7 +14,23 @@ use Illuminate\Http\Request;
 */
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+	$user = $request->user();
+	$data = [
+            'id' => $user['id'],
+            'name' => $user['name'],
+            'email' => $user['email'],
+            // 'role' => $roles,
+            'role' => ['admin'],
+            'avatar' => 1234,
+            // 'company' =>  $company['name'],
+            // 'company_short' =>  $company['short_name'],
+            // 'company_id' => $user['company_id'],
+            // 'role_cn' => $role_cn,
+            // 'role_list' => $role_list,
+            // 'curr_role' =>  [$curr_role],
+            'permission' =>  ['add','delete'],
+        ];
+    return $data;
 });
 
 // api/posts
