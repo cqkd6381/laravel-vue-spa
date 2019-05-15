@@ -56,6 +56,132 @@ class DriveController extends Controller
                         '风景', '人物', '事件'
                     ]
 
+                ],
+                [
+                    'id' => 3,
+                    'name' => '3.txt',
+                    'type' => 'folder',
+                    'size' => '1312k',
+                    'createUser' => 'lily3',
+                    'createdAt' => Carbon::now()->toDateTimeString(),
+                    'updateAt' => Carbon::now()->toDateTimeString(),
+                    'shareAt' => Carbon::now()->toDateTimeString(),
+                    'shareTimes' => 200,
+                    'shareFormUser' => '张三',
+                    'shareToUser' => '小三',
+                    'isStar' => false,
+                    'tags' => [
+                        '风景', '人物', '事件'
+                    ]
+
+                ],
+                [
+                    'id' => 4,
+                    'name' => '4.txt',
+                    'type' => 'folder',
+                    'size' => '1312k',
+                    'createUser' => 'lily4',
+                    'createdAt' => Carbon::now()->toDateTimeString(),
+                    'updateAt' => Carbon::now()->toDateTimeString(),
+                    'shareAt' => Carbon::now()->toDateTimeString(),
+                    'shareTimes' => 200,
+                    'shareFormUser' => '张三',
+                    'shareToUser' => '小三',
+                    'isStar' => false,
+                    'tags' => [
+                        '风景', '人物', '事件'
+                    ]
+
+                ],
+                [
+                    'id' => 5,
+                    'name' => '5.txt',
+                    'type' => 'folder',
+                    'size' => '1312k',
+                    'createUser' => 'lily5',
+                    'createdAt' => Carbon::now()->toDateTimeString(),
+                    'updateAt' => Carbon::now()->toDateTimeString(),
+                    'shareAt' => Carbon::now()->toDateTimeString(),
+                    'shareTimes' => 200,
+                    'shareFormUser' => '张三',
+                    'shareToUser' => '小三',
+                    'isStar' => false,
+                    'tags' => [
+                        '风景', '人物', '事件'
+                    ]
+
+                ],
+                [
+                    'id' => 6,
+                    'name' => '6.txt',
+                    'type' => 'folder',
+                    'size' => '1312k',
+                    'createUser' => 'lily6',
+                    'createdAt' => Carbon::now()->toDateTimeString(),
+                    'updateAt' => Carbon::now()->toDateTimeString(),
+                    'shareAt' => Carbon::now()->toDateTimeString(),
+                    'shareTimes' => 200,
+                    'shareFormUser' => '张三',
+                    'shareToUser' => '小三',
+                    'isStar' => false,
+                    'tags' => [
+                        '风景', '人物', '事件'
+                    ]
+
+                ],
+                [
+                    'id' => 7,
+                    'name' => '7.txt',
+                    'type' => 'folder',
+                    'size' => '1312k',
+                    'createUser' => 'lily7',
+                    'createdAt' => Carbon::now()->toDateTimeString(),
+                    'updateAt' => Carbon::now()->toDateTimeString(),
+                    'shareAt' => Carbon::now()->toDateTimeString(),
+                    'shareTimes' => 200,
+                    'shareFormUser' => '张三',
+                    'shareToUser' => '小三',
+                    'isStar' => false,
+                    'tags' => [
+                        '风景', '人物', '事件'
+                    ]
+
+                ],
+                [
+                    'id' => 8,
+                    'name' => '8.txt',
+                    'type' => 'folder',
+                    'size' => '1312k',
+                    'createUser' => 'lily8',
+                    'createdAt' => Carbon::now()->toDateTimeString(),
+                    'updateAt' => Carbon::now()->toDateTimeString(),
+                    'shareAt' => Carbon::now()->toDateTimeString(),
+                    'shareTimes' => 200,
+                    'shareFormUser' => '张三',
+                    'shareToUser' => '小三',
+                    'isStar' => false,
+                    'tags' => [
+                        '风景', '人物', '事件'
+                    ]
+
+                ],
+                [
+                    'id' => 9,
+                    'name' => '9.txt',
+                    'type' => 'folder',
+                    'size' => '1312k',
+                    'createUser' => 'lily9',
+                    'createdAt' => Carbon::now()->toDateTimeString(),
+                    'updateAt' => Carbon::now()->toDateTimeString(),
+                    'shareAt' => Carbon::now()->toDateTimeString(),
+                    'shareTimes' => 200,
+                    'shareFormUser' => '张三',
+                    'shareToUser' => '小三',
+                    'isStar' => false,
+                    'tags' => [
+                        '风景', '人物', '事件'
+                    ]
+
                 ]
             ]
         ];
@@ -64,7 +190,7 @@ class DriveController extends Controller
 
     public function store(Request $request)
     {
-        //
+        return response('success');
     }
 
     public function getTags()
@@ -86,6 +212,14 @@ class DriveController extends Controller
     public function toggleStar($id)
     {
         return response('success');
+    }
+    public function destroy($id)
+    {
+        return response('success');
+    }
+    public function update(Request $request, $id)
+    {
+        return response($request->all());
     }
 
 
