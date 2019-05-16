@@ -371,6 +371,9 @@ class DriveController extends Controller
     public function operationFileOrFolder(Request $request){
         return response($request->all());
     }
+    public function rename(Request $request){
+        return response($request->all());
+    }
 
 
 }

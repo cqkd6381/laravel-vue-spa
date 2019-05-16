@@ -47,6 +47,7 @@ Route::post('/token/refresh','Auth\LoginController@refresh');
 Route::get('/folder/content/{number}','DriveController@index');
 Route::post('/startag','DriveController@toggleStar');
 Route::post('/operationFileOrFolder','DriveController@operationFileOrFolder');
+Route::post('/rename','DriveController@rename');
 
 Route::get('/tags','DriveController@getTags');
 Route::get('/trees','DriveController@getTrees');
