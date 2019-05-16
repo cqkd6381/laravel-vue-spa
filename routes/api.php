@@ -44,7 +44,9 @@ Route::post('/logout','Auth\LoginController@logout');
 Route::post('/token/refresh','Auth\LoginController@refresh');
 
 // recDrive
-Route::resource('/drives','DriveController');
-Route::put('/drives/{id}/toggleStar','DriveController@toggleStar');
+Route::get('/folder/content/{number}','DriveController@index');
+Route::post('/startag','DriveController@toggleStar');
+Route::post('/operationFileOrFolder','DriveController@operationFileOrFolder');
 
 Route::get('/tags','DriveController@getTags');
+Route::get('/trees','DriveController@getTrees');
