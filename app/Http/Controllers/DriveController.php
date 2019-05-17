@@ -374,6 +374,16 @@ class DriveController extends Controller
     public function rename(Request $request){
         return response($request->all());
     }
+    public function addTags(Request $request){
+        return response($request->all());
+    }
+    public function removeTag(Request $request){
+        return response($request->all());
+    }
+    public function postTags(Request $request){
+        return response($request->all());
+    }
+
 
 
 }

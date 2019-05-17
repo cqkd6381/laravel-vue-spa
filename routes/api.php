@@ -50,4 +50,10 @@ Route::post('/operationFileOrFolder','DriveController@operationFileOrFolder');
 Route::post('/rename','DriveController@rename');
 
 Route::get('/tags','DriveController@getTags');
+Route::post('/tags','DriveController@postTags');
+Route::post('/addtags','DriveController@addTags');
+Route::delete('/removeTag','DriveController@removeTag');
+
+
+
 Route::get('/trees','DriveController@getTrees');
