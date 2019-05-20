@@ -383,6 +383,23 @@ class DriveController extends Controller
     public function postTags(Request $request){
         return response($request->all());
     }
+    public function createShare(Request $request){
+        return response($request->all());
+    }
+    public function groupSearch(Request $request){
+        return response([
+        ['group_number' => 1, 'group_name' => "Group1" ],
+        ['group_number' => 2, 'group_name' => "Group2" ],
+        ['group_number' => 3, 'group_name' => "Group3" ]
+      ]);
+    }
+    public function userSearch(Request $request){
+        return response([
+            ['user_number' => 1, 'name' => "张三", 'username' => "张三", "gender"=> '男', 'avatar' => '' ],
+            ['user_number' => 2, 'name' => "李四", 'username' => "李四", "gender"=> '男', 'avatar' => '' ],
+            ['user_number' => 3, 'name' => "王五", 'username' => "王五", "gender"=> '男', 'avatar' => '' ]
+        ]);
+    }
 
 
 

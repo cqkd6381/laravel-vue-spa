@@ -48,6 +48,9 @@ Route::get('/folder/content/{number}','DriveController@index');
 Route::post('/startag','DriveController@toggleStar');
 Route::post('/operationFileOrFolder','DriveController@operationFileOrFolder');
 Route::post('/rename','DriveController@rename');
+Route::post('/createShare','DriveController@createShare');
+Route::get('/groupSearch','DriveController@groupSearch');
+Route::get('/userSearch','DriveController@userSearch');
 
 Route::get('/tags','DriveController@getTags');
 Route::post('/tags','DriveController@postTags');
